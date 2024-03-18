@@ -12,14 +12,25 @@ public:
         , _y { y }
     {}
 
+    virtual ~Entity()
+    {}
+
     int get_x() const { return _x; }
     int get_y() const { return _y; }
 
-    char get_representation() const { return '?'; }
+    virtual char get_representation() const = 0;
 
-    void update() { random_move(_x, _y); }
+    virtual void update() { random_move(_x, _y); }
 
-private:
+    // D. Intéractions 1.
+    // void interact_with(const Entity& entity) {}
+    // D. Intéractions 2.
+    virtual void interact_with(Entity& entity) {}
+
+    // E.
+    virtual bool should_destroy() const {return false;}
+
+protected:
     int _x = 0;
     int _y = 0;
 };
